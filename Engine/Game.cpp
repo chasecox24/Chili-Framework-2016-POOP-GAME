@@ -96,7 +96,7 @@ void Game::ComposeFrame()
 			gfx.PutPixel(x + boxWidth - 1, y + j, 255, gb, gb); // right edge
 		}
 	}
-	else
+	else // default is to draw a crosshair
 	{
 		// left and right
 		gfx.PutPixel(-5 + x, y, 255, gb, gb);
