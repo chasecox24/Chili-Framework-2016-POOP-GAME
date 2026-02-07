@@ -48,13 +48,24 @@ void Game::ComposeFrame()
 	//gfx.PutPixel(703, 500, 255, 255, 255);
 	//gfx.PutPixel(704, 500, 255, 255, 255);
 	//gfx.PutPixel(705, 500, 255, 255, 255);
-	int x;
 
-	gfx.PutPixel(700, 495, 255, 255, 255);
-	gfx.PutPixel(700, 496, 255, 255, 255);
-	gfx.PutPixel(700, 497, 255, 255, 255);
-	gfx.PutPixel(700, 503, 255, 255, 255);
-	gfx.PutPixel(700, 504, 255, 255, 255);
-	gfx.PutPixel(700, 505, 255, 255, 255); // 3D graphics transfer vertices in order to move graphics
+	const int x = 400;
+	const int y = 300;
+
+	// left and right
+	gfx.PutPixel(-5 + x,      y, 255, 255, 255);
+	gfx.PutPixel(-4 + x,      y, 255, 255, 255);
+	gfx.PutPixel(-3 + x,      y, 255, 255, 255);
+	gfx.PutPixel( 3 + x,      y, 255, 255, 255);
+	gfx.PutPixel( 4 + x,      y, 255, 255, 255);
+	gfx.PutPixel( 5 + x,      y, 255, 255, 255);
+
+	//// top and bottom
+	gfx.PutPixel(     x, -5 + y, 255, 255, 255);
+	gfx.PutPixel(     x, -4 + y, 255, 255, 255);
+	gfx.PutPixel(     x, -3 + y, 255, 255, 255);
+	gfx.PutPixel(     x, 3 +  y, 255, 255, 255);
+	gfx.PutPixel(     x, 4 +  y, 255, 255, 255);
+	gfx.PutPixel(     x, 5 +  y, 255, 255, 255); // 3D graphics transfer vertices in order to move graphics
     // CTR + SHIFT + SPACE
 }
