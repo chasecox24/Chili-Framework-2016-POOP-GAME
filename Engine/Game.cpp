@@ -150,9 +150,9 @@ void Game::UpdateModel()
 	controlIsPressed = false; 
 
 	//CREATE AN AREA THAT CHANGES PIXELS
-	if (x > 200 && x < 300)
+	if (x > 200 && x < 300) // (! (x > 200 && x < 300) ) to flip the condition
 	{ 
-		controlIsPressed = true;
+		controlIsPressed = true; // can do !true to flip it
 	}
 
 	// CHANGE THE COLOR OF THE PIXELS
