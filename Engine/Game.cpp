@@ -38,39 +38,92 @@ void Game::Go()
 
 void Game::UpdateModel() // this should only be the game logic not drawing anything on the screen
 {
-// MOVE THE PIXELS ON THE SCREEN
+	//RIGHT
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
-		x = x + 1; // 2nd level of scope
+		if (inhitbitRight)
+		{
+		}
+		else
+		{
+			vx = vx + 1;
+			inhitbitRight = true;
+		}
+	}
+	else
+	{
+		inhitbitRight = false;
 	}
 
+	//LEFT
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		x = x - 1;
+		if (inhitbitLeft)
+		{
+		}
+		else
+		{
+			vx = vx - 1;
+			inhitbitLeft = true;
+		}
+	}
+	else 
+	{
+		inhitbitLeft = false;
 	}
 
+	//UP
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		y = y - 1;
+		if (inhitbitUp)
+		{
+		}
+		else
+		{
+			vy = vy - 1;
+			inhitbitUp = true;
+		}
+	}
+	else
+	{
+		inhitbitUp = false;
 	}
 
+	//DOWN
 	if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		y = y + 1;
+		if (inhitbitDown)
+		{
+		}
+		else
+		{
+			vy = vy + 1;
+			inhitbitDown = true;
+		}
 	}
+	else
+	{
+		inhitbitDown = false;
+	}
+
+	//UPDATE THE POSITION WITH VELOCITY
+	x = x + vx;
+	y = y + vy;
+
 	// CHANGE THE COLOR OF THE PIXELS
 	if (wnd.kbd.KeyIsPressed(VK_CONTROL))
 	{
 		gb = 0;
 	}
 
+	// CHANGE THE SHAPE
 	shapeIsChanged = wnd.kbd.KeyIsPressed(VK_SHIFT); // this will be true if the shift key is pressed, false otherwise
 }
 
 // THIS IS IN A WHILE LOOP INSIDE WIN MAIN SO IT WILL RUN FOREVER UNTIL THE USER QUITS THE PROGRAM (60 TIMES A SECOND)
 
-void Game::ComposeFrame()
-//  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
+void Game::ComposeFrame() // DRAWLING FUNCTION
+
 //  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
 //  CTRL + K THEN CTRL + D // FORMATS CODE
 
