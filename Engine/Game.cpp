@@ -36,7 +36,8 @@ void Game::Go()
 	gfx.EndFrame(); // show the frame we just drew
 }
 
-void Game::UpdateModel() // this should only be the game logic not drawing anything on the screen
+// GAME LOGIC ONLY, NO DRAWING
+void Game::UpdateModel() 
 {
 	//RIGHT
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
@@ -106,9 +107,43 @@ void Game::UpdateModel() // this should only be the game logic not drawing anyth
 		inhitbitDown = false;
 	}
 
+	// SPACE // STOP THE MOVEMENT
+	if (wnd.kbd.KeyIsPressed(VK_SPACE))
+	{
+		vx = 0;
+		vy = 0;
+	}
+
 	//UPDATE THE POSITION WITH VELOCITY
 	x = x + vx;
 	y = y + vy;
+
+
+	//PREVENT THE CROSSHAIR FROM GOING OFF THE SCREEN AND CHANGE ITS VELOCITY TO 0 IF IT HITS THE EDGE OF THE SCREEN
+	//RIGHT
+	if (x + 5 >= gfx.ScreenWidth) // x+5 is the furthest right pixel of the crosshair
+	{
+		x = gfx.ScreenWidth - 6; // - 6 because we want to put the furthest right pixel of the crosshair at the edge of the screen
+		vx = 0; // velocity becomes 0 to prevent having to spam the opposite key to move it again
+	}
+	//LEFT
+	if (x - 5 <= 0) // furthest left pixel of the crosshair
+	{
+		x = 6;
+		vx = 0;
+	}
+	//UP
+	if (y + 5 >= gfx.ScreenHeight) // furthest up pixel of the crosshair
+	{
+		y = gfx.ScreenHeight - 6;
+		vy = 0;
+	}
+	//DOWN
+	if (y - 5 <= 0) // furthest down pixel of the crosshair
+	{
+		y = 6;
+		vy = 0;
+	}
 
 	// CHANGE THE COLOR OF THE PIXELS
 	if (wnd.kbd.KeyIsPressed(VK_CONTROL))
