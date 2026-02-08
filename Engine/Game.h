@@ -49,6 +49,7 @@ private:
 	int vx = 0; // velocity in x direction
 	int vy = 0; // velocity in y direction
 	int gb = 255; // green and blue
+	bool controlIsPressed = false; // Color changer
 	bool shapeIsChanged = false; // tells us whether it is a box or a crosshair
 	bool inhitbitUp = false; // these variables will update the velocity once when the key is first pressed AND
 	bool inhitbitDown = false; //Not update the velocity every single frame that the key is held down (LESSON 9)

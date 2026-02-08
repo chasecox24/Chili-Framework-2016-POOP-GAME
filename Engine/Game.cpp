@@ -145,14 +145,38 @@ void Game::UpdateModel()
 		vy = 0;
 	}
 
+	// CONTROL // COLOR CHANGER
+	controlIsPressed = wnd.kbd.KeyIsPressed(VK_CONTROL);
+	controlIsPressed = false; 
+
+	//CREATE AN AREA THAT CHANGES PIXELS
+	if (x > 200 && x < 300)
+	{ 
+		controlIsPressed = true;
+	}
+
 	// CHANGE THE COLOR OF THE PIXELS
-	if (wnd.kbd.KeyIsPressed(VK_CONTROL))
+	if (controlIsPressed)
 	{
 		gb = 0;
+	}
+	else
+	{
+		gb = 255;
 	}
 
 	// CHANGE THE SHAPE
 	shapeIsChanged = wnd.kbd.KeyIsPressed(VK_SHIFT); // this will be true if the shift key is pressed, false otherwise
+	shapeIsChanged = false; // default is to draw a crosshair
+
+	if (x > 500 && x < 700 && y > 20 && y < 580) // create an area that changes the shape
+	{
+		shapeIsChanged = true;
+	}
+	else
+	{
+		shapeIsChanged = false;
+	}
 }
 
 // THIS IS IN A WHILE LOOP INSIDE WIN MAIN SO IT WILL RUN FOREVER UNTIL THE USER QUITS THE PROGRAM (60 TIMES A SECOND)
