@@ -30,36 +30,15 @@ Game::Game(MainWindow& wnd)
 
 void Game::Go()
 {
-	gfx.BeginFrame();
-	UpdateModel();
-	ComposeFrame();
-	gfx.EndFrame();
+	gfx.BeginFrame(); // begin drawing a new frame
+	UpdateModel(); // update the game logic
+	ComposeFrame(); // draw the frame
+	gfx.EndFrame(); // show the frame we just drew
 }
 
-void Game::UpdateModel()
+void Game::UpdateModel() // this should only be the game logic not drawing anything on the screen
 {
-}
-
-// THIS IS IN A WHILE LOOP INSIDE WIN MAIN SO IT WILL RUN FOREVER UNTIL THE USER QUITS THE PROGRAM (60 TIMES A SECOND)
-
-void Game::ComposeFrame()
-//  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
-//  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
-//  CTRL + K THEN CTRL + D // FORMATS CODE
-
-{				//800x, 600y    RGB      
-	//gfx.PutPixel(695, 500, 255,gb,gb); // put a pixel on the screen
-
-	// Set variables have a lifespan called scope (LESSON 7)
-	// moved variables from local function scope to member variable scope so they can live as long as the program is running (LESSON 8)
-	/*int x = 400;
-	int y = 300;*/
-
-	const int boxWidth = 10;
-	const int boxHeight = 10;
-	int gb = 255; // green and blue
-
-	// MOVE THE PIXELS ON THE SCREEN
+// MOVE THE PIXELS ON THE SCREEN
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
 		x = x + 1; // 2nd level of scope
@@ -85,10 +64,31 @@ void Game::ComposeFrame()
 		gb = 0;
 	}
 
+	shapeIsChanged = wnd.kbd.KeyIsPressed(VK_SHIFT); // this will be true if the shift key is pressed, false otherwise
+}
+
+// THIS IS IN A WHILE LOOP INSIDE WIN MAIN SO IT WILL RUN FOREVER UNTIL THE USER QUITS THE PROGRAM (60 TIMES A SECOND)
+
+void Game::ComposeFrame()
+//  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
+//  SHIFT+ CTR + SPACE // GIVE TOOLTIPS
+//  CTRL + K THEN CTRL + D // FORMATS CODE
+
+{				//800x, 600y    RGB      
+	//gfx.PutPixel(695, 500, 255,gb,gb); // put a pixel on the screen
+
+	// Set variables have a lifespan called scope (LESSON 7)
+	// moved variables from local function scope to member variable scope so they can live as long as the program is running (LESSON 8)
+	/*int x = 400;
+	int y = 300;*/
+
+	const int boxWidth = 10;
+	const int boxHeight = 10;
+	
 	//object.member.function(parameter)
 //const bool condition = wnd.kbd.KeyIsPressed( VK_UP); // this will stay true as long as the up arrow key is pressed
 
-	if (wnd.kbd.KeyIsPressed(VK_SHIFT)) // this is a branch that will execute depending on the value of the condition
+	if (shapeIsChanged) // this is a branch that will execute depending on the value of the condition
 	{
 		// Draw the box outline using a for loop // I was lazy to not put the pixels one by one
 		for (int i = 0; i < boxWidth; i++) {

@@ -46,5 +46,7 @@ private:
 	/*  User Variables              */
 	int x = 400;
 	int y = 300;
+	int gb = 255; // green and blue
+	bool shapeIsChanged = false; // tells us whether it is a box or a crosshair
 	///********************************/
 };
